@@ -25,8 +25,8 @@ public class Store {
                     products = enterProductList(sc);
                     break;
                 case 2:
-                    for (int i = 0; i < products.length; i++) {
-                        products[i].calculateSalePrice();
+                    for (Product product : products) {
+                        product.calculateSalePrice();
                     }
                     break;
                 case 3:
@@ -65,14 +65,12 @@ public class Store {
         return products;
     }
     static void sortProductList(Product[] products){
-        Arrays.sort(products, (a, b) -> {
-            return (int) (a.getSalePrice() - b.getSalePrice());
-        });
+        Arrays.sort(products, (a, b) -> (int) (a.getSalePrice() - b.getSalePrice()));
     }
     static void printProductList(Product[] products){
-        for (int i = 0; i < products.length; i++) {
-            System.out.println(products[i].getName());
-            System.out.println(products[i].getSalePrice());
+        for (Product product : products) {
+            System.out.println(product.getName());
+            System.out.println(product.getSalePrice());
             System.out.println("------------");
         }
     }
