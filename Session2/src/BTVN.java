@@ -19,7 +19,8 @@ public class BTVN {
         System.out.print("Nhập số lượng học sinh trong lớp:");
         int studentQuantity = Integer.parseInt(sc.nextLine());
         String[] emailList =  enterStudentEmailList(sc,studentQuantity);
-        printEmailList(emailList);
+        String[] sortedList = sortStudentEmailList(emailList);
+        printEmailList(sortedList);
     }
     static String[] enterStudentEmailList(Scanner scanner, int size){
         String[] emailList = new String[size];
@@ -32,6 +33,18 @@ public class BTVN {
             emailList[i] = email;
         }
         return emailList;
+    }
+    static String[] sortStudentEmailList(String [] inputList){
+        for (int i = 0; i< inputList.length;i++){
+            for (int j =i+1; j<inputList.length; j++){
+                if(inputList[i].compareTo(inputList[j]) > 0){
+                    String tempt = inputList[i];
+                    inputList[i] = inputList[j];
+                    inputList[j] = tempt;
+                }
+            }
+        }
+        return inputList;
     }
     static void printEmailList(String[] emailList){
         int maxString =20;

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class NhapTyPhu {
     public static void main(String[] args) {
