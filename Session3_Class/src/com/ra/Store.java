@@ -37,7 +37,7 @@ public class Store {
                     System.out.println("Kết thúc chương trình");
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + select);
+                    System.out.println("Hãy chọn từ 1 đến 4!");
             }
         } while (select != 4);
 
@@ -49,14 +49,15 @@ public class Store {
         int size =Integer.parseInt(sc.nextLine());
         Product[] products = new Product[size];
         for (int i = 0; i < size; i++) {
+            System.out.println("Hãy nhập thông tin cho sản phẩm thứ "+(i+1)+":");
             Product p = new Product();
             System.out.print("Nhập id: ");
             p.setId(sc.nextLine());
-            System.out.print("\nNhập tên: ");
+            System.out.print("Nhập tên: ");
             p.setName(sc.nextLine());
-            System.out.print("\nNhập giá: ");
+            System.out.print("Nhập giá: ");
             p.setPrice(Double.parseDouble(sc.nextLine()));
-            System.out.print("\nNhập discount: ");
+            System.out.print("Nhập discount: ");
             p.setDiscount(Double.parseDouble(sc.nextLine()));
             products[i] = p;
             System.out.println();
