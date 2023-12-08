@@ -1,77 +1,56 @@
 package com.ra;
 
 import java.util.Arrays;
-import java.util.Scanner;
+
 
 public class Store {
-    /**
-     * Tạo lớp Product(id, name, priceIn, discount, priceOut).
-     * Viết chương trình java. Nhập vào danh sách 5 sản phẩm.
-     * Hiển thị thông tin sản phẩm theo giá bán (priceOut) giảm dần.
-     */
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int select;
-        Product[] products = new Product[0];
-        do {
-            System.out.println("Hãy nhập lựa chọn của bạn:");
-            System.out.println("1.Nhập thông tin danh sách sản phẩm.");
-            System.out.println("2.Tính tiền từng sản phẩm trong danh sách ");
-            System.out.println("3.In ra danh sách sản phảm theo thứ tự giá tăng dần");
-            System.out.println("4.Thoát");
-            select = Integer.parseInt(sc.nextLine());
-            switch (select){
-                case 1:
-                    products = enterProductList(sc);
-                    break;
-                case 2:
-                    for (Product product : products) {
-                        product.calculateSalePrice();
-                    }
-                    break;
-                case 3:
-                    sortProductList(products);
-                    printProductList(products);
-                    break;
-                case 4:
-                    System.out.println("Kết thúc chương trình");
-                    break;
-                default:
-                    System.out.println("Hãy chọn từ 1 đến 4!");
+//    Product {
+//        String id;
+//        String name;
+//        double price;
+//        double discount;
+//        double slaePrice;
+//
+//        Product() {} // constructor ko tham số
+//        Product(id, name, price, discount) {} // constructor có tham số
+//        // Get/Set
+//        calculateSalePrice() {} // Tính giá bán cho sản phẩm
+//    }
+//    Dựa trên class Product trong BTVN buổi trước, phát triển tiếp ứng dụng
+//            Tạo class Store {
+//        Product[] products;
+//
+//        void add(Product p) {} // Thêm sản phẩm vào mảng products
+//        Product findId(String id) {} // Tìm kiếm sản phẩm trong mảng products
+//        boolean sort() {} // Sắp xếp các sản phẩm trong mảng products theo tên từ A-Z
+//        void show() {} // Hiển thị toàn bộ dữ liệu sản phẩm đã được thêm trong mảng products
+//    }
+//    Viết chương trình Java kiểm tra các phương thức của class Sotre
+    Product [] products;
+
+    public void add(Product p){
+        this.products = Arrays.copyOf(this.products== null ?new Product[1] : this.products, (this.products != null ? this.products.length : 0) +1);
+        this.products[this.products.length-1] = p;
+    }
+    public  void sortProductList(){
+        Arrays.sort(this.products, (a,b) -> a.getName().compareTo(b.getName()));
+    }
+    public Product findId(String id){
+//        int index = Arrays.binarySearch(this.products,new Product(id,"",0,0,0));
+//        if(index>0){
+//            return this.products[index];
+//        }
+//        return new Product();
+        for (int i = 0; i < this.products.length; i++) {
+            if(this.products[i].getId()== id){
+                return this.products[i];
             }
-        } while (select != 4);
-
-
-
-    }
-    static Product[] enterProductList(Scanner sc){
-        System.out.print("Hãy nhập số lượng sản phẩm:");
-        int size =Integer.parseInt(sc.nextLine());
-        Product[] products = new Product[size];
-        for (int i = 0; i < size; i++) {
-            System.out.println("Hãy nhập thông tin cho sản phẩm thứ "+(i+1)+":");
-            Product p = new Product();
-            System.out.print("Nhập id: ");
-            p.setId(sc.nextLine());
-            System.out.print("Nhập tên: ");
-            p.setName(sc.nextLine());
-            System.out.print("Nhập giá: ");
-            p.setPrice(Double.parseDouble(sc.nextLine()));
-            System.out.print("Nhập discount: ");
-            p.setDiscount(Double.parseDouble(sc.nextLine()));
-            products[i] = p;
-            System.out.println();
         }
-        return products;
+        return new Product();
     }
-    static void sortProductList(Product[] products){
-        Arrays.sort(products, (a, b) -> (int) (a.getSalePrice() - b.getSalePrice()));
-    }
-    static void printProductList(Product[] products){
-        for (Product product : products) {
-            System.out.println(product.getName());
-            System.out.println(product.getSalePrice());
-            System.out.println("------------");
+    public void show(){
+        for (int i = 0; i < this.products.length; i++) {
+            System.out.print("\nSản phẩm thứ "+(i+1)+": " + this.products[i].getName());
         }
     }
 }
