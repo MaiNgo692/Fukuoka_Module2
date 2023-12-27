@@ -255,7 +255,7 @@ public class StudentManagement {
     }
     public static void staticStudentByGPA(){
         int numberOfWeak=0;
-        int numberOfAvange =0;
+        int numberOfAvenge =0;
         int numberOfNormal=0;
         int numberOfGood =0;
         for (Student st: listStudents) {
@@ -264,7 +264,7 @@ public class StudentManagement {
                     numberOfWeak++;
                     break;
                 case "Trung bình":
-                    numberOfAvange++;
+                    numberOfAvenge++;
                     break;
                 case "Khá":
                     numberOfNormal++;
@@ -274,7 +274,7 @@ public class StudentManagement {
                     break;
             }
         }
-        System.out.printf("Giỏi: %d - Khá: %d - Trung bình: %d - Yếu: %d",numberOfGood,numberOfNormal,numberOfAvange,numberOfWeak);
+        System.out.printf("Giỏi: %d - Khá: %d - Trung bình: %d - Yếu: %d",numberOfGood,numberOfNormal,numberOfAvenge,numberOfWeak);
     }
 
     public static void staticStudentPass(){
