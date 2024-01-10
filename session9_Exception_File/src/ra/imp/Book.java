@@ -2,12 +2,13 @@ package ra.imp;
 
 import ra.IBook;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Book implements IBook {
+public class Book implements IBook, Serializable {
     private int bookId; //tự sinh (max + 1)
     private String bookName; //duy nhất, gồm 4 ký tụ, bắt đầu là B
     private float importPrice;// có giá trị lớn hơn 0
@@ -34,6 +35,7 @@ public class Book implements IBook {
     }
 
     public void setBookName(String bookName) {
+
         this.bookName = bookName;
     }
 
@@ -102,7 +104,7 @@ public class Book implements IBook {
         inputDescription(scanner);
     }
     public void inputBookId(){
-        if(BookRun.listBook.isEmpty()){
+        if(BookRun.listBook.size()==0){
             this.bookId = 1;
         }else {
             int max = BookRun.listBook.get(0).getBookId();
@@ -117,11 +119,13 @@ public class Book implements IBook {
 
     public void inputBookName(Scanner scanner){
         System.out.println("Nhập tên sách:");
-        String bookName = scanner.nextLine();
             do{
-                for (Book book: BookRun.listBook) {
-                    if(book.getBookName().toLowerCase().equals(bookName.toLowerCase())){
-                        System.out.println("Tên sách là bị trùng, vui lòng nhập lại");
+                String bookName = scanner.nextLine();
+                if(BookRun.listBook != null){
+                    for (Book book: BookRun.listBook) {
+                        if(book.getBookName().toLowerCase().equals(bookName.toLowerCase())){
+                            System.out.println("Tên sách là bị trùng, vui lòng nhập lại");
+                        }
                     }
                 }
                 if(bookName.startsWith("B")&& bookName.length()==4){
@@ -156,7 +160,7 @@ public class Book implements IBook {
             try {
                 exportPrice = Float.parseFloat(scanner.nextLine());
                 if(exportPrice <= this.importPrice){
-                    System.out.printf("exportPrice có giá trị lớn hơn %f, vui lòng nhập lại\n",this.importPrice);
+                    System.out.printf("exportPrice có giá trị lớn hơn %d, vui lòng nhập lại\n",this.importPrice);
                 }else {
                     this.exportPrice = exportPrice;
                     break;

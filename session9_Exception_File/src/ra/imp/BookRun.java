@@ -9,9 +9,11 @@ public class BookRun {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean isExit = true;
-        listBook = readDataFromFile();
+        if(readDataFromFile()!= null){
+            listBook = readDataFromFile();
+        }
         do {
-            System.out.println("******************** MENU *************************");
+            System.out.println("\n******************** MENU *************************");
             System.out.println("1. Nhập thông tin sách");
             System.out.println("2. Hiển thị thông tin sách");
             System.out.println("3. Cập nhật thông tin sách theo mã sách");
@@ -65,7 +67,7 @@ public class BookRun {
             for (int i = 0; i < numberOfBook; i++) {
                 Book book = new Book();
                 book.inputData(scanner);
-                listBook.add(book);
+                boolean add = listBook.add(book);
             }
         }catch (NumberFormatException e){
             e.printStackTrace();
@@ -83,7 +85,6 @@ public class BookRun {
             int indexUpdate = getIndexByBookId(idBookUpdate);
             if(indexUpdate >=0){
                 listBook.get(indexUpdate).inputBookName(scanner);
-                listBook.get(indexUpdate).inputImportPrice(scanner);
                 listBook.get(indexUpdate).inputImportPrice(scanner);
                 listBook.get(indexUpdate).inputExportPrice(scanner);
                 listBook.get(indexUpdate).inputAuthor(scanner);
@@ -187,7 +188,7 @@ public class BookRun {
             //6. Đóng stream
             oos.close();
             fos.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | NotSerializableException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
