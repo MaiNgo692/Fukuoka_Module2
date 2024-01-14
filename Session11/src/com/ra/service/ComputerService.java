@@ -54,7 +54,7 @@ public class ComputerService implements IComputerService{
         if(computer != null){
             if(computer.isStatus()){
                 computer.setStatus(false);
-                long useTime = new Date().getTime()/(1000*60*60)%24 - computer.getStart().getTime()/(1000*60*60)%24;
+                long useTime = (new Date().getTime()- computer.getStart().getTime())/(1000*60*60);
                 System.out.println("Giá tiền: " + vn.format(useTime == 0 ? computer.getPrice(): useTime * computer.getPrice()));
             }else {
                 System.out.println("Máy đang được mở!");
